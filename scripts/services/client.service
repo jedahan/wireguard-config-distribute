@@ -9,15 +9,17 @@ NotifyAccess=all
 
 ProtectSystem=strict
 PrivateDevices=yes
-PrivateTmp=yes
+PrivateTmp=no
+ReadWritePaths=/tmp
 ProtectKernelTunables=yes
 ProtectControlGroups=yes
 
-EnvironmentFile=/etc/wireguard/client.conf
-
 ExecStart=/usr/local/bin/wireguard-config-client
 
-Restart=always
+Restart=on-abnormal
+RestartSec=15s
+
+EnvironmentFile=/etc/wireguard/client.conf
 
 [Install]
 WantedBy=multi-user.target
